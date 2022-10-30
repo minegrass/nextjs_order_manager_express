@@ -1,0 +1,7 @@
+POST http://localhost:3001/sendorder/post
+content-type: application/json
+Cookie: accessToken={{accessToken}}
+
+{
+"order_id":"65"
+}

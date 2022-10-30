@@ -1,0 +1,30 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model orderlist {
+  order_id   Int      @id @default(autoincrement())
+  username   String   @db.VarChar(16)
+  password   String   @db.VarChar(30)
+  request    String   @db.VarChar(30)
+  full_price Decimal  @db.Decimal(5, 2)
+  price      Decimal  @db.Decimal(5, 2)
+  player_id  String?  @default(dbgenerated("(0)")) @db.VarChar(19)
+  player     player?  @relation(fields: [player_id], references: [discord_id])
+  buyer      String?  @db.VarChar(30)
+  done_order Boolean? @default(dbgenerated("(false)"))
+}
+
+model player {
+  discord_id String      @id @db.VarChar(19)
+  nickname   String?     @db.VarChar(37)
+  balance    Decimal?    @db.Decimal(5, 2)
+  orderlist  orderlist[]
+}
