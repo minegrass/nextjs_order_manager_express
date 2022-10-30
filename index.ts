@@ -13,6 +13,7 @@ app.use(cookiePraser());
 //routes
 
 app.use("/sendorder", require("./routes/sendOrder"));
+app.use("/", require("./routes/index"));
 
 app.listen(port, () => {
   console.log(`server running on ${port}`);
