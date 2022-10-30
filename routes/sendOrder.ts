@@ -8,7 +8,7 @@ import { dcSendOrder } from "../discordBot";
 
 // getting order data
 router.post("/post", verifyJWT, async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const { order_id } = req.body;
   const result = await prisma.orderlist.findUnique({
     where: {

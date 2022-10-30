@@ -10,7 +10,7 @@ if (!jwtSecret) {
 
 export const verifyJWT = (req: any, res: any, next: NextFunction) => {
   const token = req.headers["accesstoken"];
-  console.log(req.headers["accesstoken"]);
+  // console.log(req.headers["accesstoken"]);
 
   if (!token) {
     res.json({ auth: false, message: "No even have token" });

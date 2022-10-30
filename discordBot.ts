@@ -45,7 +45,7 @@ const client = new Client({
 //discord bot login
 export const dcLogin = async () => {
   client.once("ready", () => {
-    console.log("Bot Online 10/8 update");
+    console.log("Bot Online 30/oct update");
     client.setMaxListeners(1);
     dcListenTakeOrder();
   });
@@ -89,14 +89,14 @@ export const dcListenTakeOrder = async () => {
       if (!matches) {
         throw Error("Message has invalid id");
       }
-      console.log(matches[1]);
+      // console.log(matches[1]);
       const orderID = matches[1];
       const dbResult = await prisma.orderlist.findUnique({
         where: {
           order_id: parseInt(orderID),
         },
       });
-      console.log(dbResult);
+      // console.log(dbResult);
 
       // update the button interaction ( cancel the interaction error )
       await action.deferUpdate();
