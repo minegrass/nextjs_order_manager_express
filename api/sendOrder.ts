@@ -2,9 +2,9 @@ import express from "express";
 const app = express();
 const router = express.Router();
 import jwt from "jsonwebtoken";
-import { prisma } from "../prisma/dbserver.js";
-import { verifyJWT } from "../AuthMidware.js";
-import { dcSendOrder } from "../discordBot.js";
+import { prisma } from "../prisma/dbserver";
+import { verifyJWT } from "../AuthMidware";
+import { dcSendOrder } from "../discordBot";
 
 // getting order data
 router.post("/post", verifyJWT, async (req, res) => {

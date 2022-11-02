@@ -2,7 +2,7 @@
   "name": "nextjs_order_manager_express",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "type": "module",
   "scripts": {
     "start": "ts-node ./index.ts",
