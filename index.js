@@ -3,7 +3,7 @@ import cors from "cors";
 import cookiePraser from "cookie-parser";
 import { config } from "dotenv";
 import jwt from "jsonwebtoken";
-import { dcLogin, dcListenTakeOrder } from "./discordBot";
+import { dcLogin, dcListenTakeOrder } from "./discordBot.js";
 config();
 const app = express();
 const port = process.env.PORT || 3001;

@@ -11,7 +11,7 @@ import {
   TextChannel,
   MessageActionRowComponentBuilder,
 } from "discord.js";
-import { prisma } from "./prisma/dbserver";
+import { prisma } from "./prisma/dbserver.js";
 import { NotFoundError } from "@prisma/client/runtime";
 // config
 const BOT_TOKEN = process.env.BOT_TOKEN || console.error("NO BOT TOKEN");
@@ -19,14 +19,14 @@ const POST_CHANNEL =
   process.env.POST_CHANNEL || console.error("NO POST CHANNEL");
 const KING_ID = process.env.KING_ID || console.error("NO KING ID");
 
-const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+const row = new ActionRowBuilder.addComponents(
   new ButtonBuilder()
     .setCustomId(`takeBtn`)
     .setLabel("TAKE ORDER")
     .setStyle(ButtonStyle.Primary)
 );
 
-const disable_btn = new ActionRowBuilder().addComponents(
+const disable_btn = new ActionRowBuilder.addComponents(
   new ButtonBuilder()
     .setCustomId("takeBtn")
     .setLabel("TAKEN")
@@ -66,13 +66,9 @@ export const dcLogout = async () => {
 
 // discord action
 
-export const dcSendOrder = async (
-  orderID: string,
-  request: string,
-  price: string
-) => {
+export const dcSendOrder = async (orderID, request, price) => {
   // diff id button for diffrent order
-  await (client.channels.cache.get(`${POST_CHANNEL}`) as TextChannel)?.send({
+  await client.channels.cache.get(`${POST_CHANNEL}`)?.send({
     content: `@everyone NEW ORDER ARRIVED!\n Order ID:[${orderID}]\n Order details:${request}\n Price:RM${price}`,
     components: [row],
   });
@@ -80,7 +76,7 @@ export const dcSendOrder = async (
 // listening on button clicked
 export const dcListenTakeOrder = async () => {
   console.log("listening to button click");
-  client.on("interactionCreate", async (action: any) => {
+  client.on("interactionCreate", async (action) => {
     if (action.customId === `takeBtn`) {
       // console.log(action);
       const MsgContent = action.message.content;

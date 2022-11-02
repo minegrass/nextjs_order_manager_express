@@ -8,14 +8,14 @@ if (!jwtSecret) {
   throw Error("no jwt Secret");
 }
 
-export const verifyJWT = (req: any, res: any, next: NextFunction) => {
+export const verifyJWT = (req, res, next) => {
   const token = req.headers["accesstoken"];
   // console.log(req.headers["accesstoken"]);
 
   if (!token) {
     res.json({ auth: false, message: "No even have token" });
   } else {
-    jwt.verify(token.toString(), jwtSecret, (err: any, decoded: any) => {
+    jwt.verify(token.toString(), jwtSecret, (err, decoded) => {
       if (err) {
         console.error(err);
         res.json({ auth: false, message: "failed to auth" });
